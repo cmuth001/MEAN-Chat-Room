@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MEAN-Chat-Room';
+storedPosts = [];
+onPostCreated(post) {
+  console.log(post);
+  this.storedPosts.push(post);
+}
 }
