@@ -9,8 +9,8 @@ import {
   MatToolbarModule,
   MatExpansionModule,
 } from '@angular/material';
-
-import { PostService } from './posts/post.service';
+import { HttpClientModule } from '@angular/common/http';
+import { PostsService } from './posts/posts.service';
 
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
@@ -32,9 +32,10 @@ import { PostListComponent } from './posts/post-list/post-list.component';
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
+    HttpClientModule,
 
   ],
-  providers: [PostService],
+  providers: [PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
