@@ -16,20 +16,42 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   next();
 });
+// Inserting new post in to MongoDB
 app.post('/api/posts', (req, res, next) => {
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
   });
   // const post = req.body;
-  post.save();
+  post.save()
+  .then(result => {
+    console.log("createdPost: " + result);
+    res.status(201).json({
+      message: 'post added in to server',
+      postId: result._id,
+    });
+  });
   // console.log(post);
-  res.status(201).json({
-    message: 'post added in to server',
+
+});
+// Deleting a requested post from MongoDB
+app.delete('/api/posts/:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log('id:', id);
+  Post.deleteOne( { _id: id } )
+  .then(result => {
+    console.log(result);
+  });
+  res.status(200).json({
+    message: 'message successfully deleted!',
   });
 });
+
+// getting all the posts from mongoDB
 app.use('/api/posts', (req, res, next)=>{
   Post.find()
   .then( (result) =>{
@@ -39,6 +61,6 @@ app.use('/api/posts', (req, res, next)=>{
     });
   })
   .catch();
-
 });
+
 module.exports = app;
