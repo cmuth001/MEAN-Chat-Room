@@ -1,34 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 import {
   MatInputModule,
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatProgressSpinnerModule,
-} from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
-import { PostsService } from './posts/posts.service';
+  MatProgressSpinnerModule
+} from "@angular/material";
 
-import { AppComponent } from './app.component';
-import { PostCreateComponent } from './posts/post-create/post-create.component';
-import { HeaderComponent } from './header/header.component';
-import { PostListComponent } from './posts/post-list/post-list.component';
-import { AppRoutingModule } from './app-routing-module';
+import { AppComponent } from "./app.component";
+import { PostCreateComponent } from "./posts/post-create/post-create.component";
+import { HeaderComponent } from "./header/header.component";
+import { PostListComponent } from "./posts/post-list/post-list.component";
+import { AppRoutingModule } from "./app-routing.module";
+
 @NgModule({
   declarations: [
     AppComponent,
     PostCreateComponent,
     HeaderComponent,
-    PostListComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
@@ -36,10 +36,9 @@ import { AppRoutingModule } from './app-routing-module';
     MatToolbarModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
-    HttpClientModule,
-
+    HttpClientModule
   ],
-  providers: [PostsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
